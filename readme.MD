@@ -24,8 +24,33 @@ A Java-ban a [Swing API](https://en.wikipedia.org/wiki/Swing_(Java)) segítség�
 ## A program működése
 
 
+
 ## Objektumok felépítése
 
+Az alábbi két táblázat bemutatja az objektumnak a felépítését és az itt felvázolt mezők rendelkeznek getter/setter függvényekkel.
+
+### Páciens objektum (Patient.java)
+| Páciens mező    | Leírás                |
+|-----------------|-----------------------|
+| **firstName**   | A páciens keresztneve |
+| **lastName**    | A páciens vezetékneve |
+| **bornDate**    | Születési dátum       |
+| **zipCode**     | Páciens irányítószáma |
+| **city**        | Páciens lakhelye      |
+| **street**      | Utca                  |
+| **houseNumber** | Házszám               |
+| **motherName**  | Anyja neve            |
+| **fatherName**  | Apja neve             |
+| **bornPlace**   | Születési hely        |
+| **phoneNumber** | Telefonszám           |
+| **gender**      | Neme                  |
+
+### Diagnózis objektum (Diagnosis.java)
+
+| Diagnózis mező    | Leírás                  |
+|-------------------|-------------------------|
+| **name**          | A diagnózis megnevezése |
+| **expertOpinion** | Szakértői vélemény      |
 
 ## XML fájlstruktúra
 
@@ -67,11 +92,14 @@ A diagnózisoknak az elsődleges kulcsa a `date` attributúm, formátuma `date="
 ```
 
 ##Használt maven dependenciák
+
 A Swing komponensek között található JDatePicker nem bizonyult megfelelőnek.
 LGoodDatePicker komponens segítségével lehet egyszerre dátumot és időt bekérni a felhasználótól.
+
 * **JCalendar**: https://mvnrepository.com/artifact/com.toedter/jcalendar
 * **LGoodDatePicker**: https://mvnrepository.com/artifact/com.github.lgooddatepicker/LGoodDatePicker
 
 ##Használt képek és ikonok
+
 * **Google Fonts**: *https://fonts.google.com/icons*
 * **Pexels**: *https://www.pexels.com/hu-hu/*
