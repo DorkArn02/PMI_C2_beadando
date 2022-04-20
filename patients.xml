@@ -1,0 +1,39 @@
+<patients>
+    <patient tajNumber="123456789">
+        <firstName>János</firstName>
+        <lastName>Minta</lastName>
+        <bornDate>1992/06/09</bornDate>
+        <zipCode>7600</zipCode>
+        <city>Pécs</city>
+        <street>Fő utca</street>
+        <houseNumber>123</houseNumber>
+        <motherName>Minta Mária</motherName>
+        <fatherName>Minta József</fatherName>
+        <maidenName>Minta János</maidenName>
+        <bornPlace>Pécs</bornPlace>
+        <phoneNumber>+3655276503</phoneNumber>
+        <gender>férfi</gender>
+        <medicalHistory>
+            <diagnosis date="2022-04-20 19:30">
+                <name>pneumonia</name>
+                <expertOpinion>Röntgen vizsgálat.</expertOpinion>
+            </diagnosis>
+        </medicalHistory>
+    </patient>
+    <patient tajNumber="234567891">
+        <firstName>élél</firstName>
+        <lastName>oklkk</lastName>
+        <bornDate>2002/04/14</bornDate>
+        <zipCode>kékél</zipCode>
+        <city>kklé</city>
+        <street>klé</street>
+        <houseNumber>klkl</houseNumber>
+        <motherName>klé</motherName>
+        <fatherName>klé</fatherName>
+        <maidenName>kl</maidenName>
+        <bornPlace>léé</bornPlace>
+        <phoneNumber>lké</phoneNumber>
+        <gender>nő</gender>
+        <medicalHistory/>
+    </patient>
+</patients>
