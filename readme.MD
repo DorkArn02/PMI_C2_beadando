@@ -8,14 +8,14 @@
 
 ## Tartalom
 
-* [Általános leírás]()
-* [A program működése]()
-* [Objektumok felépítése]()
-* [XML fájlstruktúrája]()
-* [Használt maven dependenciák]()
-* [Használt képek és ikonok]()
+* [Általános leírás](#általános-leírás)
+* [A program működése](#a-program-működése)
+* [Objektumok felépítése](#objektumok-felépítése)
+* [XML fájlstruktúrája](#xml-fájlstruktúra)
+* [Használt maven dependenciák](#használt-maven-dependenciák)
+* [Használt képek és ikonok](#használt-képek-és-ikonok)
 
-##Általános leírás
+##  Általános leírás
 
 Ez egy egészségügyi nyilvántartó program, amely segítségével XML fájlban tárolhatunk adatokat páciensekről és a hozzájuk tartozó diagnózisokat.
 Az applikáció Java programozási nyelven készült és ablakos alkalmazás.
@@ -91,7 +91,7 @@ A diagnózisoknak az elsődleges kulcsa a `date` attributúm, formátuma `date="
 </patients>
 ```
 
-##Használt maven dependenciák
+## Használt maven dependenciák
 
 A Swing komponensek között található JDatePicker nem bizonyult megfelelőnek.
 LGoodDatePicker komponens segítségével lehet egyszerre dátumot és időt bekérni a felhasználótól.
@@ -99,7 +99,7 @@ LGoodDatePicker komponens segítségével lehet egyszerre dátumot és időt bek
 * **JCalendar**: https://mvnrepository.com/artifact/com.toedter/jcalendar
 * **LGoodDatePicker**: https://mvnrepository.com/artifact/com.github.lgooddatepicker/LGoodDatePicker
 
-##Használt képek és ikonok
+## Használt képek és ikonok
 
 * **Google Fonts**: *https://fonts.google.com/icons*
 * **Pexels**: *https://www.pexels.com/hu-hu/*
