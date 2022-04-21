@@ -21,6 +21,11 @@ public class ValidationUtils {
 		return true;
 	}
 
+	/**
+	 * Returns true if the zip code is valid
+	 * @param zipCode Patient's zip code
+	 * @return boolean
+	 */
 	public static boolean isValidZipCode(String zipCode){
 		if(zipCode.length() != 4){
 			return false;
@@ -33,19 +38,44 @@ public class ValidationUtils {
 		return true;
 	}
 
-	public static boolean isValidHouseNumber(String streetNumber){
+	/**
+	 * Returns true if the house number is valid
+	 * @param houseNumber Patient's house number
+	 * @return boolean
+	 */
+	public static boolean isValidHouseNumber(String houseNumber){
 		try {
-			Integer.parseInt(streetNumber);
+			Integer.parseInt(houseNumber);
 		}catch (NumberFormatException e) {
 			return false;
 		}
 		return true;
 	}
 
+	/**
+	 * Returns true if the jDateChooser component is valid
+	 * @param jDateChooser Date chooser component
+	 * @return boolean
+	 */
 	public static boolean isJDateChooserValid(JDateChooser jDateChooser){
 		return jDateChooser.getDate() != null;
 	}
 
+	/**
+	 * Returns true if all input fields are filled.
+	 * @param lastName Patient's last name
+	 * @param firstName Patient's first name
+	 * @param tajNumber Patient's TAJ number
+	 * @param zipCode Patient's zip code
+	 * @param city Patient's home city
+	 * @param street Patient's street
+	 * @param houseNumber Patient's house number
+	 * @param phoneNumber Patient's phone number
+	 * @param motherName Patient's mother name
+	 * @param fatherName Patient's father name
+	 * @param bornPlace Patient's born place
+	 * @return boolean
+	 */
 	public static boolean isPatientInputValid(JTextField lastName, JTextField firstName, JTextField tajNumber, JTextField zipCode, JTextField city,
 											  JTextField street, JTextField houseNumber, JTextField phoneNumber, JTextField motherName,
 											  JTextField fatherName, JTextField bornPlace) {

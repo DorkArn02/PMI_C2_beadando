@@ -15,7 +15,7 @@ public class LanguageUtils {
 	public static String CONFIRM_EXIT = "Biztosan ki szeretne lépni a programból!";
 	public static String EXIT_LABEL = "Kilépés";
 	
-	public static String DASHBOARD_TITLE = "E-healthcare";
+	public static String DASHBOARD_TITLE = "E-med";
 	public static String ADD_DISEASE_TITLE = "Diagnózis rögzítése a páciens kórtörténetéhez";
 
 	// AddPatient.java AddDisease.java
