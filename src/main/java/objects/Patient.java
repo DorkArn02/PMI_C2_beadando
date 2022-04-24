@@ -14,6 +14,7 @@ public class Patient {
 	private String bornPlace;
 	private String phoneNumber;
 	private String gender;
+	private String bloodGroup;
 	
 	public Patient() {
 		
@@ -34,10 +35,11 @@ public class Patient {
 	 * @param bornPlace Born place of patient
 	 * @param phoneNumber Phone number of patient
 	 * @param gender Gender of patient
+	 * @param bloodGroup Blood group of patient
 	 */
 	public Patient(String firstName, String lastName, String bornDate, String tajNumber, String zipCode, String city,
 			String street, String houseNumber, String motherName, String fatherName,
-			String bornPlace, String phoneNumber, String gender) {
+			String bornPlace, String phoneNumber, String gender, String bloodGroup) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -52,6 +54,7 @@ public class Patient {
 		this.bornPlace = bornPlace;
 		this.phoneNumber = phoneNumber;
 		this.gender = gender;
+		this.bloodGroup = bloodGroup;
 	}
 
 	// Getters
@@ -158,6 +161,15 @@ public class Patient {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+	
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+	
 
 	@Override
 	public String toString() {
@@ -174,14 +186,12 @@ public class Patient {
 		String bornPlace = "Születési hely: " + getBornPlace();
 		String phoneNumber = "Telefonszám: " + getPhoneNumber();
 		String gender = "Neme: " + getGender();
+		String bloodGroupS = "Vércsoportja: " + bloodGroup;
 		
-		String result = lastName + '\n' + firstName + '\n' +
+		return lastName + '\n' + firstName + '\n' +
 				bornDate + '\n' + tajNumber + '\n' + zipCode
 				+ '\n'   + city + '\n' + street + '\n' + houseNumber
-				+ '\n'   + motherName + '\n' + fatherName + '\n'
-				+ '\n'   + bornPlace + '\n' + phoneNumber + '\n' + gender;
-		
-		return result;
+				+ '\n'   + motherName + '\n' + fatherName
+				+ '\n'   + bornPlace + '\n' + phoneNumber + '\n' + gender + "\n" + bloodGroupS;
 	}
-	
 }

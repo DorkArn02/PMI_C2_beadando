@@ -8,15 +8,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import utils.XmlHandler2;
+
+import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
+
+import utils.XmlHandler;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
 import java.io.IOException;
 import java.io.InputStream;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Logger;
-import javax.swing.border.BevelBorder;
 
 import static utils.LanguageUtils.*;
 
@@ -36,13 +39,14 @@ public class Dashboard extends JFrame {
 	 *
 	 * @param xmlHandler2 Getting the Xml Handler Class from MainApp
 	 */
-	public Dashboard(XmlHandler2 xmlHandler2) throws IOException {;
+	public Dashboard(XmlHandler xmlHandler2) throws IOException {
 		setResizable(false);
 
-		getClass().getResource("");
+		FlatCyanLightIJTheme.setup();
+		
 		InputStream medical_history_icon = getClass().getResourceAsStream("/outline_history_black_24dp.png");
 		InputStream add_disease_icon = getClass().getResourceAsStream("/outline_medication_black_24dp.png");
-		InputStream list_export_icon = getClass().getResourceAsStream("/outline_add_black_24dp.png");
+		InputStream list_export_icon = getClass().getResourceAsStream("/receipt.png");
 		InputStream add_patient_icon = getClass().getResourceAsStream("/outline_person_add_black_24dp.png");
 		InputStream delete_patient_icon = getClass().getResourceAsStream("/outline_person_remove_black_24dp.png");
 		InputStream edit_patient_icon = getClass().getResourceAsStream("/outline_edit_black_24dp.png");
@@ -72,8 +76,6 @@ public class Dashboard extends JFrame {
 				logger.info("Medical history window opened!");
 			}
 		});
-
-		btnKrtrtnet.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnKrtrtnet.setIcon(new ImageIcon(ImageIO.read(medical_history_icon)));
 		btnKrtrtnet.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnKrtrtnet.setBounds(392, 315, 241, 100);
@@ -87,7 +89,6 @@ public class Dashboard extends JFrame {
 				logger.info("List / export window opened!");
 			}
 		});
-		btnLista.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnLista.setIcon(new ImageIcon(ImageIO.read(list_export_icon)));
 		btnLista.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnLista.setBounds(392, 204, 241, 100);
@@ -101,8 +102,6 @@ public class Dashboard extends JFrame {
 				logger.info("Add diagnosis window opened!");
 			}
 		});
-
-		btnBetegsgRgztse.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnBetegsgRgztse.setIcon(new ImageIcon(ImageIO.read(add_disease_icon)));
 		btnBetegsgRgztse.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnBetegsgRgztse.setBounds(392, 93, 241, 100);
@@ -117,11 +116,9 @@ public class Dashboard extends JFrame {
 				logger.info("Edit patient window opened!");
 			}
 		});
-
-		btnPciensAdatmdosts.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnPciensAdatmdosts.setIcon(new ImageIcon(ImageIO.read(edit_patient_icon)));
 		btnPciensAdatmdosts.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnPciensAdatmdosts.setBounds(10, 315, 241, 100);
+		btnPciensAdatmdosts.setBounds(10, 315, 251, 100);
 		contentPane.add(btnPciensAdatmdosts);
 
 		// Delete patient data button
@@ -132,21 +129,19 @@ public class Dashboard extends JFrame {
 				logger.info("Delete patient data window opened!");
 			}
 		});
-		btnPciensTrlse.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnPciensTrlse.setIcon(new ImageIcon(ImageIO.read(delete_patient_icon)));
 		btnPciensTrlse.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnPciensTrlse.setBounds(10, 204, 241, 100);
+		btnPciensTrlse.setBounds(10, 204, 251, 100);
 		contentPane.add(btnPciensTrlse);
 
 		JLabel lblHeading = new JLabel(MAIN_TITLE);
-		lblHeading.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblHeading.setFont(new Font("Segoe UI Semibold", Font.BOLD, 24));
 		lblHeading.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHeading.setBounds(0, 0, 674, 52);
 		contentPane.add(lblHeading);
 
 		// Add new patient button
 		JButton btnNewButton = new JButton(ADD_NEW_PATIENT);
-		btnNewButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnNewButton.addActionListener(e -> {
 			if(!a.isVisible()) {
 				a.setVisible(true);
@@ -156,7 +151,7 @@ public class Dashboard extends JFrame {
 
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.setIcon(new ImageIcon(ImageIO.read(add_patient_icon)));
-		btnNewButton.setBounds(10, 93, 241, 100);
+		btnNewButton.setBounds(10, 93, 251, 100);
 		contentPane.add(btnNewButton);
 
 		ImageIcon icon = new ImageIcon(ImageIO.read(background_image));

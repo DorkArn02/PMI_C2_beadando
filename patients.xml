@@ -1,39 +1,306 @@
 <patients>
-    <patient tajNumber="123456789">
-        <firstName>János</firstName>
-        <lastName>Minta</lastName>
-        <bornDate>1992/06/09</bornDate>
-        <zipCode>7600</zipCode>
-        <city>Pécs</city>
-        <street>Fő utca</street>
-        <houseNumber>123</houseNumber>
-        <motherName>Minta Mária</motherName>
-        <fatherName>Minta József</fatherName>
-        <maidenName>Minta János</maidenName>
-        <bornPlace>Pécs</bornPlace>
-        <phoneNumber>+3655276503</phoneNumber>
+    <patient tajNumber="512851949">
+        <firstName>Ubul</firstName>
+        <lastName>Jónás</lastName>
+        <bornDate>1987/03/21</bornDate>
+        <zipCode>5197</zipCode>
+        <city>Hesszaváros</city>
+        <street>Múzeum út</street>
+        <houseNumber>792</houseNumber>
+        <motherName>Vörös-Fodor Taddeus</motherName>
+        <fatherName>Ifj. László Natali</fatherName>
+        <bornPlace>Gáspárváros</bornPlace>
+        <phoneNumber>+36-20-2887467</phoneNumber>
         <gender>férfi</gender>
+        <bloodGroup>0-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="753105404">
+        <firstName>Hiador</firstName>
+        <lastName>Hegedűs</lastName>
+        <bornDate>1976/11/03</bornDate>
+        <zipCode>6340</zipCode>
+        <city>Jákóváros</city>
+        <street>Somhegyi utca</street>
+        <houseNumber>427</houseNumber>
+        <motherName>Borbélyné Polikárp</motherName>
+        <fatherName>Hajdu Dorottya</fatherName>
+        <bornPlace>Sándorváros</bornPlace>
+        <phoneNumber>+36-50-3032559</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>0-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="255838736">
+        <firstName>Gorgiás</firstName>
+        <lastName>Máté</lastName>
+        <bornDate>1982/02/11</bornDate>
+        <zipCode>4219</zipCode>
+        <city>Szép Oldamur</city>
+        <street>Gyöngyvirág út</street>
+        <houseNumber>162</houseNumber>
+        <motherName>Antal Voren</motherName>
+        <fatherName>Gróf Faragó Klementina</fatherName>
+        <bornPlace>Kikindaszállás</bornPlace>
+        <phoneNumber>+36-50-5445243</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>0-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="367493168">
+        <firstName>Renátusz</firstName>
+        <lastName>Szücs</lastName>
+        <bornDate>1975/07/24</bornDate>
+        <zipCode>3306</zipCode>
+        <city>Feketevár</city>
+        <street>Szépasszony köz</street>
+        <houseNumber>750</houseNumber>
+        <motherName>Kis Detre</motherName>
+        <fatherName>Papp Ajsa</fatherName>
+        <bornPlace>Kerekesváros</bornPlace>
+        <phoneNumber>+36-30-4122763</phoneNumber>
+        <gender>nő</gender>
+        <bloodGroup>0-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="464428340">
+        <firstName>Eta</firstName>
+        <lastName>Varga</lastName>
+        <bornDate>2002/04/20</bornDate>
+        <zipCode>1296</zipCode>
+        <city>Novákvár</city>
+        <street>Bodrog köz</street>
+        <houseNumber>588</houseNumber>
+        <motherName>Gróf Szücs Dorián</motherName>
+        <fatherName>Pásztor Misó</fatherName>
+        <bornPlace>Regõsszállás</bornPlace>
+        <phoneNumber>+36-20-5318988</phoneNumber>
+        <gender>nő</gender>
+        <bloodGroup>A-</bloodGroup>
         <medicalHistory>
-            <diagnosis date="2022-04-20 19:30">
-                <name>pneumonia</name>
-                <expertOpinion>Röntgen vizsgálat.</expertOpinion>
+            <diagnosis date="2022-04-01 04:00">
+                <name>Hyperthyroidism</name>
+                <expertOpinion>Vero unde aut veritatis minima. Totam quibusdam aspernatur.</expertOpinion>
+            </diagnosis>
+            <diagnosis date="2022-04-23 04:00">
+                <name>Eye Problems</name>
+                <expertOpinion>Amet in ea illum et corrupti. Eligendi esse sit.</expertOpinion>
+            </diagnosis>
+            <diagnosis date="2022-04-01 14:00">
+                <name>Reflux</name>
+                <expertOpinion>Eum quae delectus delectus. Non enim quo
+veniam est. Maiores veritatis voluptatem
+culpa omnis ad officia sit. Cupiditate ut maxime
+aut ut ea sit dolorum.</expertOpinion>
             </diagnosis>
         </medicalHistory>
     </patient>
-    <patient tajNumber="234567891">
-        <firstName>élél</firstName>
-        <lastName>oklkk</lastName>
-        <bornDate>2002/04/14</bornDate>
-        <zipCode>kékél</zipCode>
-        <city>kklé</city>
-        <street>klé</street>
-        <houseNumber>klkl</houseNumber>
-        <motherName>klé</motherName>
-        <fatherName>klé</fatherName>
-        <maidenName>kl</maidenName>
-        <bornPlace>léé</bornPlace>
-        <phoneNumber>lké</phoneNumber>
+    <patient tajNumber="884854067">
+        <firstName>Árnika</firstName>
+        <lastName>László</lastName>
+        <bornDate>1991/05/14</bornDate>
+        <zipCode>7354</zipCode>
+        <city>Evódiafalu</city>
+        <street>Akácos út</street>
+        <houseNumber>998</houseNumber>
+        <motherName>Dr. Rácz Szabin</motherName>
+        <fatherName>Somogyi Donáta</fatherName>
+        <bornPlace>Dél Kelli</bornPlace>
+        <phoneNumber>+36-20-9924577</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>B-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="060298385">
+        <firstName>Lucinda</firstName>
+        <lastName>Székely</lastName>
+        <bornDate>1999/11/21</bornDate>
+        <zipCode>4949</zipCode>
+        <city>Mikófalva</city>
+        <street>Fekete István u.</street>
+        <houseNumber>500</houseNumber>
+        <motherName>Máté Hajnácska</motherName>
+        <fatherName>Magyar Lénárt</fatherName>
+        <bornPlace>Nyugat Liviusz</bornPlace>
+        <phoneNumber>+36-50-8908987</phoneNumber>
         <gender>nő</gender>
+        <bloodGroup>B+</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="534844946">
+        <firstName>Anetta</firstName>
+        <lastName>Fazekas</lastName>
+        <bornDate>1986/08/07</bornDate>
+        <zipCode>3119</zipCode>
+        <city>Dzsingizfalva</city>
+        <street>Szigetvári köz</street>
+        <houseNumber>127</houseNumber>
+        <motherName>Szilágyiné Amadea</motherName>
+        <fatherName>Nemes-Lukács Balda</fatherName>
+        <bornPlace>Kelet Ríka</bornPlace>
+        <phoneNumber>+36-30-3366816</phoneNumber>
+        <gender>nő</gender>
+        <bloodGroup>AB+</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="046838459">
+        <firstName>Ariel</firstName>
+        <lastName>Orsós</lastName>
+        <bornDate>2001/06/07</bornDate>
+        <zipCode>4704</zipCode>
+        <city>Dél Árav</city>
+        <street>Nagyszeben sétány</street>
+        <houseNumber>607</houseNumber>
+        <motherName>Virág Lior</motherName>
+        <fatherName>Kelemen Almár</fatherName>
+        <bornPlace>Fadettfalva</bornPlace>
+        <phoneNumber>+36-20-3528915</phoneNumber>
+        <gender>nő</gender>
+        <bloodGroup>A-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="043313374">
+        <firstName>Alek</firstName>
+        <lastName>Katona</lastName>
+        <bornDate>1993/04/27</bornDate>
+        <zipCode>6398</zipCode>
+        <city>Hódosfalu</city>
+        <street>Kölcsey Ferenc u.</street>
+        <houseNumber>383</houseNumber>
+        <motherName>Fábián Odó</motherName>
+        <fatherName>Barna Csikó</fatherName>
+        <bornPlace>Kelenváros</bornPlace>
+        <phoneNumber>+36-70-3992207</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>AB+</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="948767923">
+        <firstName>Lemmi</firstName>
+        <lastName>Bakos</lastName>
+        <bornDate>1986/06/29</bornDate>
+        <zipCode>0384</zipCode>
+        <city>Fenennafalva</city>
+        <street>Tulipán sétány</street>
+        <houseNumber>925</houseNumber>
+        <motherName>Balogh Afrodita</motherName>
+        <fatherName>Orbán Magdolna</fatherName>
+        <bornPlace>Agrippínaváros</bornPlace>
+        <phoneNumber>+36-50-6356551</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>B+</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="045775681">
+        <firstName>Tamerlán</firstName>
+        <lastName>Bakos</lastName>
+        <bornDate>1992/02/07</bornDate>
+        <zipCode>0729</zipCode>
+        <city>Dél Kászon</city>
+        <street>Szépvölgyi u.</street>
+        <houseNumber>292</houseNumber>
+        <motherName>Orosz Amadeusz</motherName>
+        <fatherName>Budai Erdõ</fatherName>
+        <bornPlace>Florentinváros</bornPlace>
+        <phoneNumber>+36-30-7382223</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>0-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="617537353">
+        <firstName>Gergõ</firstName>
+        <lastName>Horváth</lastName>
+        <bornDate>1975/10/13</bornDate>
+        <zipCode>1997</zipCode>
+        <city>Pappváros</city>
+        <street>Esze Tamás utca</street>
+        <houseNumber>835</houseNumber>
+        <motherName>Antal-Lukács Ruzsinka</motherName>
+        <fatherName>Veres Hakim</fatherName>
+        <bornPlace>Áhimszállás</bornPlace>
+        <phoneNumber>+36-70-0705574</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>0+</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="644126774">
+        <firstName>Arek</firstName>
+        <lastName>Hegedüs</lastName>
+        <bornDate>1980/06/29</bornDate>
+        <zipCode>0364</zipCode>
+        <city>Atafalva</city>
+        <street>Nagygát utca</street>
+        <houseNumber>945</houseNumber>
+        <motherName>Pásztorfi Jákó</motherName>
+        <fatherName>Bogdán-Török Joel</fatherName>
+        <bornPlace>Észak Frej</bornPlace>
+        <phoneNumber>+36-20-6023013</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>B+</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="453014358">
+        <firstName>Hetti</firstName>
+        <lastName>Kiss</lastName>
+        <bornDate>1961/06/14</bornDate>
+        <zipCode>7846</zipCode>
+        <city>Kerubinvár</city>
+        <street>Szántó utca út</street>
+        <houseNumber>536</houseNumber>
+        <motherName>Boros-Simon Harka</motherName>
+        <fatherName>Orsós Hermina</fatherName>
+        <bornPlace>Fehérváros</bornPlace>
+        <phoneNumber>+36-30-0319387</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>A-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="292904205">
+        <firstName>Borbolya</firstName>
+        <lastName>Somogyi</lastName>
+        <bornDate>1992/05/04</bornDate>
+        <zipCode>2558</zipCode>
+        <city>Sebesfalva</city>
+        <street>Csalogány sétány</street>
+        <houseNumber>311</houseNumber>
+        <motherName>Papp Alett</motherName>
+        <fatherName>Kiss Iza</fatherName>
+        <bornPlace>Évifalu</bornPlace>
+        <phoneNumber>+36-70-1703065</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>A-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="101279006">
+        <firstName>Miksa</firstName>
+        <lastName>Vass</lastName>
+        <bornDate>1968/07/28</bornDate>
+        <zipCode>1012</zipCode>
+        <city>Pintérfalva</city>
+        <street>Nap u.</street>
+        <houseNumber>453</houseNumber>
+        <motherName>Báró Mészáros Bara</motherName>
+        <fatherName>Özv. Sipos Bónis</fatherName>
+        <bornPlace>Mirijamvár</bornPlace>
+        <phoneNumber>+36-30-5708044</phoneNumber>
+        <gender>férfi</gender>
+        <bloodGroup>A-</bloodGroup>
+        <medicalHistory/>
+    </patient>
+    <patient tajNumber="379769263">
+        <firstName>Ilon</firstName>
+        <lastName>Magyar</lastName>
+        <bornDate>1985/11/28</bornDate>
+        <zipCode>6538</zipCode>
+        <city>Leanderfalu</city>
+        <street>Fő út</street>
+        <houseNumber>911</houseNumber>
+        <motherName>Báró Szabó Bátor</motherName>
+        <fatherName>Hegedűs Denissza</fatherName>
+        <bornPlace>Mártonfalu</bornPlace>
+        <phoneNumber>+36-20-0563664</phoneNumber>
+        <gender>nő</gender>
+        <bloodGroup>0-</bloodGroup>
         <medicalHistory/>
     </patient>
 </patients>

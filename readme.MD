@@ -28,7 +28,7 @@ A program a legújabb Java JDK 17-es verziót használja és a Maven csomagkezel
 
 A Swing ablakok osztályai a `src/main/java/frames` mappában találhatóak és a program inditásakor a `Dashboard.java` JFrame ablak létrejön.
 
-![](screenshots/img.png)
+![](screenshotsn/Dashboard.PNG)
 
 Itt található 6 gomb, amellyel különböző menüket nyithatunk meg.
 Ezek rendszerint:
@@ -39,33 +39,44 @@ Ezek rendszerint:
 * Páciens list / export `src/main/java/frames/ListExport.java`
 * Kórtörténet / adatok `src/main/java/frames/ViewMedicalHistory.java`
 
-Az XML fájlok kezelését az `src/main/java/utils/XmlHandler2.java` osztály végzi.
+Az XML fájlok kezelését az `src/main/java/utils/XmlHandler.java` osztály végzi.
 
 A bevitt adatok helyességét az `src/main/utils/ValidationUtils.java` osztály kezeli.
 
 Továbbá az ablakokban szereplő szövegek az `src/main/utils/LanguageUtils.java` osztályból töltődnek be.
 
+Az adatok exportálását végző metódus az `src/main/utils/ExportUtils.java` osztályban található.
+
 Végül az objektumok megtalálhatóak az `src/main/objects` mappában.
 
 ### További screenshot-ok
 
-![](screenshots/img_1.png)
+![](screenshotsn/AddPatient.PNG)
 
-![](screenshots/img_2.png)
+![](screenshotsn/DeletePatient.PNG)
 
-![](screenshots/img_3.png)
+![](screenshotsn/EditPatient.PNG)
 
-![](screenshots/img_4.png)
+![](screenshotsn/AddDisease.PNG)
 
-![](screenshots/img_5.png)
+![](screenshotsn/PatientList.PNG)
 
-![](screenshots/img_6.png)
+![](screenshotsn/MedicalHistory.PNG)
 
 ## Objektumok felépítése
 
 Az alábbi két táblázat bemutatja az objektumnak a felépítését és az itt felvázolt mezők rendelkeznek getter/setter függvényekkel.
 
+**Fontos:** A páciensek személyes adatai közül az irányítószámot, az házszámot és a taj számot egy metódus ellenőrzi, hogy helyesek-e csak akkor lehet az új pácienst rögzíteni az adatbázisban.
+
+**Formai követelmények:**
+* Irányítószám - zipCode: 4 számjegyű kód
+* Taj szám - tajNumber: 9 számjegyú kód
+* Házszám - houseNumber: Csak számjegyekből állhat
+* Születési dátum - bornDate: yyyy/MM/dd azaz év/hónap/nap formátumban kell megadni
+
 ### Páciens objektum (Patient.java)
+
 | Páciens mező    | Leírás                |
 |-----------------|-----------------------|
 | **firstName**   | A páciens keresztneve |
@@ -80,6 +91,7 @@ Az alábbi két táblázat bemutatja az objektumnak a felépítését és az itt
 | **bornPlace**   | Születési hely        |
 | **phoneNumber** | Telefonszám           |
 | **gender**      | Neme                  |
+| **bloodGroup**  | Vércsoportja          |
 
 ### Diagnózis objektum (Diagnosis.java)
 
@@ -87,6 +99,19 @@ Az alábbi két táblázat bemutatja az objektumnak a felépítését és az itt
 |-------------------|-------------------------|
 | **name**          | A diagnózis megnevezése |
 | **expertOpinion** | Szakértői vélemény      |
+
+### Vércsoport objektum (BloodGroup.java)
+
+| Vércsoport jelölés | Megnevezés               |
+|--------------------|--------------------------|
+| **O_NEG**          | Nulla negatív vércsoport |
+| **O_POS**          | Nulla pozitív vércsoport |
+| **A_NEG**          | A negatív vércsoport     |
+| **A_POS**          | A pozitív vércsoport     |
+| **B_NEG**          | B negatív vércsoport     |
+| **B_POS**          | B pozitív vércsoport     |
+| **AB_NEG**         | AB negatív vércsoport    |
+| **AB_POS**         | AB pozitív vércsoport    |
 
 ## XML fájlstruktúra
 
@@ -117,6 +142,7 @@ A diagnózisoknak az elsődleges kulcsa a `date` attributúm, formátuma `date="
         <bornPlace>Születési hely</bornPlace>
         <phoneNumber>Telefonszám</phoneNumber>
         <gender>Neme</gender>
+        <bloodGroup>Vércsoportja</bloodGroup>
         <medicalHistory>
             <diagnosis date="yyyy-MM-dd hh:mm">
                 <name>Diagnózis neve</name>
@@ -134,23 +160,23 @@ A megfelelő beviteli mezők kitöltése után kattintsunk a **hozzáadás** gom
 Ha bizonyos mezőbe nem megfelelő típusú adatok írtunk, akkor hibaüzenet jelenik meg.
 Azonban, ha az adott taj számmal már létrehoztunk egy személyt az adatbázisban akkor megjelenik egy hibaüzenet.
 
-![](screenshots/img_7.png)
+![](screenshotsn/AddPatientRandom.PNG)
 
 Ha be akarjuk zárni az ablakot, akkor megjelenik egy megerősítő panel.
 
-![](screenshots/img_13.png)
+![](screenshotsn/ConfirmDialog.PNG)
 
 #### Példák a hibaüzenetekre
 
-![](screenshots/img_8.png)
+![](screenshotsn/PatientExists.PNG)
 
-![](screenshots/img_9.png)
+![](screenshotsn/WrongTajFormat.PNG)
 
-![](screenshots/img_10.png)
+![](screenshotsn/WrongDateFormat.PNG)
 
-![](screenshots/img_11.png)
+![](screenshotsn/WrongHouseNumberFormat.PNG)
 
-![](screenshots/img_12.png)
+![](screenshotsn/WrongZipCodeFormat.PNG)
 
 ### Páciens törlése
 
@@ -158,11 +184,11 @@ Páciens eltávolítása esetén csak egy TAJ számot kell megadni, mert elsődl
 
 A beviteli mezőbe egy 9 számjegyű kódot kell megadni. Hiba esetén párbeszéd ablak jelenik meg.
 
-![](screenshots/img_14.png)
+![](screenshotsn/DeletePatient.PNG)
 
 #### Hibaüzenet ha ilyen személy nem létezik
 
-![](screenshots/img_15.png)
+![](screenshotsn/PatientNotExists.PNG)
 
 ### Páciens adatainak a módosítása
 
@@ -175,7 +201,7 @@ A hibakezelés is teljesen megegyezően zajlik.
 
 A módosítandó adatokat átírjuk, majd a módosítás gombra kell kattintani.
 
-![](screenshots/img_16.png)
+![](screenshotsn/EditPatient.PNG)
 
 ### Diagnózis rögzítése
 
@@ -183,7 +209,8 @@ A diagnózis rögzítésekor meg kell adnunk a páciens TAJ számát, a betegsé
 
 Ha elkezdjük gépelni a TAJ számot és egy olyat adunk meg, ami létezik akkor ezt jelzi egy felugró panel.
 
-![](screenshots/img_18.png)
+![](screenshotsn/AddDiseaseTajNotify.PNG)
+![](screenshotsn/AddDiseaseNotify.PNG)
 
 Ha már létezik egy diagnózis egy adott dátumon akkor hibaüzenet jelenik meg.
 
@@ -191,36 +218,45 @@ A diagnózis törlése a jobb oldali panelben található, a TAJ szám megadás�
 
 A legördülő menüben ki kell választani azt a dátumot amely a törlendő diagnózishoz tartozik majd az **Eltávolítás** gombra kell kattintani.
 
-![](screenshots/img_19.png)
+![](screenshotsn/DeleteDiagnosis.PNG)
 
 ### Kórtörténet megtekintése
 
 Ha megadjuk a páciens TAJ számát és rákattintunk a **Keresés** gombra, akkor megjelenik az alatta lévő táblázatban a rögzített diagnózisok.
 Az oldalt található szövegdoboz tartalma nem módosítható, csupán a páciens személyes adatait megjeleníti. Amennyiben nincs rögzített diagnózis és létezik a páciens akkor csak a személyes adatai jelennek meg oldalt és a kórtörténet táblázat pedig üres marad.
 
-![](screenshots/img_6.png)
-
-#### Egy kép működés közben
-
-![](screenshots/img_17.png)
+![](screenshotsn/MedicalHistory.PNG)
 
 ### Páciensek személyes adatainak exportálása
 
-![](screenshots/img_5.png)
 
-Amennyiben szeretnénk exportálni a páciensek adatait egy txt állományban megtehetjük az **Exportálás txt-be** nevezetű gomb megnyomásával.
+
+![](screenshotsn/PatientList.PNG)
+
+![](screenshotsn/JsonExport.PNG)
+
+Amennyiben szeretnénk exportálni a páciensek adatait egy json állományban megtehetjük az **Exportálás json-be** nevezetű gomb megnyomásával.
 Ha van az XML fájlba rögzítve páciens adat, akkor megjelenik egy információs ablak a *Páciens lista betöltve!* szöveggel.
 
-Az exportált fájl megtalálható a program mappájában `PMI_C2_beadando/patients_export.txt` néven.
+Az exportált fájl megtalálható a program mappájában `PMI_C2_beadando/patients_export.json` néven.
 
 ## Használt maven dependenciák
 
 A Swing komponensek között található JDatePicker nem bizonyult megfelelőnek.
 LGoodDatePicker komponens segítségével lehet egyszerre dátumot és időt bekérni a felhasználótól.
 
+A programban lehetséges megadni véletlenszerű adatokat, ezeket a [Faker](https://github.com/DiUS/java-faker) nevű könyvtárral lehetséges generálni.
+
+Az exportálást a Google [Gson](https://github.com/google/gson) könyvtára végzi el.
+
+A Swing UI alapértelmezett kinézetét felülírja a FlatLaf nevű könyvtár.
+
 * **JCalendar**: https://mvnrepository.com/artifact/com.toedter/jcalendar
 * **LGoodDatePicker**: https://mvnrepository.com/artifact/com.github.lgooddatepicker/LGoodDatePicker
-
+* **Faker**: https://mvnrepository.com/artifact/com.github.javafaker/javafaker
+* **Gson**: https://mvnrepository.com/artifact/com.google.code.gson/gson
+* **Flatlaf**: https://search.maven.org/artifact/com.formdev/flatlaf/2.1/jar
+* **FlatLaf-Intellij-Themes**: https://mvnrepository.com/artifact/com.formdev/flatlaf-intellij-themes 
 ## Használt képek és ikonok
 
 * **Google Fonts**: *https://fonts.google.com/icons*

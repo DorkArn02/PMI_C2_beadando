@@ -11,7 +11,7 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 import frames.Dashboard;
-import utils.XmlHandler2;
+import utils.XmlHandler;
 
 /**
  * @version 1.0
@@ -20,7 +20,7 @@ import utils.XmlHandler2;
 public class MainApp {
 	
     private final Logger logger = Logger.getLogger(MainApp.class.getName());
-	private XmlHandler2 xmlHandler2;
+	private XmlHandler xmlHandler2;
     
 	public static void main(String[] args) {
 		MainApp mainApp = new MainApp();
@@ -46,7 +46,7 @@ public class MainApp {
 	
 	private void initXmlFiles() {
 		try {
-			xmlHandler2 = new XmlHandler2("./patients.xml");
+			xmlHandler2 = new XmlHandler("./patients.xml");
 			logger.info("Xml files loaded successfully.");
 		} catch (ParserConfigurationException | SAXException  | TransformerException e) {
 			e.printStackTrace();

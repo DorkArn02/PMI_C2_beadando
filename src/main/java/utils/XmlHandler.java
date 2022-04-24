@@ -21,14 +21,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class XmlHandler2 {
+public class XmlHandler {
     private Document doc;
-    private final Logger logger = Logger.getLogger(XmlHandler2.class.getName());
+    private final Logger logger = Logger.getLogger(XmlHandler.class.getName());
     
     /**
      * @param res_path Path to the patients.xml
      */
-    public XmlHandler2(String res_path) throws ParserConfigurationException, SAXException, TransformerException {
+    public XmlHandler(String res_path) throws ParserConfigurationException, SAXException, TransformerException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         try {
@@ -75,10 +75,10 @@ public class XmlHandler2 {
             Element houseNumberE = doc.createElement("houseNumber");
             Element motherNameE = doc.createElement("motherName");
             Element fatherNameE = doc.createElement("fatherName");
-            Element maidenNameE = doc.createElement("maidenName");
             Element bornPlaceE = doc.createElement("bornPlace");
             Element phoneNumberE = doc.createElement("phoneNumber");
             Element genderE = doc.createElement("gender");
+            Element bloodGroupE = doc.createElement("bloodGroup");
 
             Element medicalHistoryE = doc.createElement("medicalHistory");
 
@@ -94,6 +94,7 @@ public class XmlHandler2 {
             bornPlaceE.setTextContent(p.getBornPlace());
             phoneNumberE.setTextContent(p.getPhoneNumber());
             genderE.setTextContent(p.getGender());
+            bloodGroupE.setTextContent(p.getBloodGroup());
             
             Element patientE = doc.createElement("patient");
             patientE.appendChild(firstNameE);
@@ -105,10 +106,11 @@ public class XmlHandler2 {
             patientE.appendChild(houseNumberE);
             patientE.appendChild(motherNameE);
             patientE.appendChild(fatherNameE);
-            patientE.appendChild(maidenNameE);
             patientE.appendChild(bornPlaceE);
             patientE.appendChild(phoneNumberE);
             patientE.appendChild(genderE);
+            patientE.appendChild(bloodGroupE);
+            
             patientE.appendChild(medicalHistoryE);
             patientE.setAttribute("tajNumber", p.getTajNumber());
 
@@ -116,11 +118,10 @@ public class XmlHandler2 {
 
             Update_Xml_File();
             
-            logger.info("Páciens rögzítve!");
+            logger.info("Patient added to XML file with ID: " + p.getTajNumber());
         }else{
-            logger.warning("Ilyen páciens már létezik!");
+            logger.warning("Patient with ID:  " + p.getTajNumber() + " already exists in the database.");
         }
-
     }
 
     /**
@@ -137,9 +138,9 @@ public class XmlHandler2 {
                 }
             }
             Update_Xml_File();
-            logger.info("Páciens törölve!");
+            logger.info("Patient with ID: " + tajNumber + " deleted from the database.");
         }else{
-            logger.warning("Ilyen páciens nem létezik!");
+            logger.warning("Patient with ID: " + tajNumber + " does not exist.");
         }
     }
 
@@ -162,6 +163,7 @@ public class XmlHandler2 {
                             if(nn.getNodeType() == Node.ELEMENT_NODE){
                                 if(nn.getNodeName().equals(Detail)){
                                     nn.setTextContent(NewValue);
+                                    logger.info("Patient's " +  Detail + "  with ID: " + TajNumber + " has been successfully changed to " + NewValue);
                                 }
                             }
                         }
@@ -171,7 +173,7 @@ public class XmlHandler2 {
 
             Update_Xml_File();
         }else{
-            logger.warning("Ilyen páciens nem létezik!");
+            logger.warning("Patient with ID: " + TajNumber + " does not exist.");
         }
     }
 
@@ -216,12 +218,15 @@ public class XmlHandler2 {
                         			patient.setPhoneNumber(childNodes.item(j).getTextContent());
                         		if(childNodes.item(j).getNodeName().equals("gender"))
                         			patient.setGender(childNodes.item(j).getTextContent());
+                        		if(childNodes.item(j).getNodeName().equals("bloodGroup"))
+                        			patient.setBloodGroup(childNodes.item(j).getTextContent());
                         }
+                        logger.info("Patient with ID: " + TajNumber + " retrieved from the database successfully.");
                     }
                 }
             }
         }else{
-            logger.warning("Ilyen páciens nem létezik!");
+            logger.warning("Patient with ID: " + TajNumber + " does not exist.");
         }
         
         return patient;
@@ -265,11 +270,15 @@ public class XmlHandler2 {
                         			patient.setPhoneNumber(childNodes.item(j).getTextContent());
                         		if(childNodes.item(j).getNodeName().equals("gender"))
                         			patient.setGender(childNodes.item(j).getTextContent());
+                        		if(childNodes.item(j).getNodeName().equals("bloodGroup"))
+                        			patient.setBloodGroup(childNodes.item(j).getTextContent());
                         }
                    }
                 temPatients.add(patient);
             }
-        
+
+            logger.info("Data of all patients have been retrieved from the database.");
+
         return temPatients;
     }
 
@@ -287,7 +296,6 @@ public class XmlHandler2 {
         transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
 
         DOMSource domSource = new DOMSource(doc);
-        //StreamResult streamResult = new StreamResult(new File("src/main/resources/patients.xml"));
         StreamResult streamResult = new StreamResult(new File("./patients.xml"));
 
         transformer.transform(domSource, streamResult);
@@ -304,9 +312,9 @@ public class XmlHandler2 {
      */
     public void Add_Diagnosis_To_Patient_Medical_History(String tajNumber, String diagnosis, String date, String expertOpinion) throws TransformerException {
         if(!Contains_Patient(tajNumber)){
-            logger.warning("Nem létezik ilyen páciens!");
+            logger.warning("Patient with ID: " + tajNumber + " does not exist.");
         }else if(Contains_Diagnosis_In_Specific_Date(tajNumber, date)) {
-            logger.info("Ehhez a dátumhoz már rögzített diagnózist!");
+            logger.warning("Diagnosis with date: " + date + " already exists.");
         }else{
 
             Element diag = doc.createElement("diagnosis");
@@ -340,6 +348,7 @@ public class XmlHandler2 {
                     }
                 }
             }
+            logger.info("Registered a new diagnosis to the patient with ID: " + tajNumber);
             Update_Xml_File();
         }
     }
@@ -352,7 +361,7 @@ public class XmlHandler2 {
      */
     public boolean Contains_Diagnosis_In_Specific_Date(String TajNumber, String date){
         if(!Contains_Patient(TajNumber)){
-            logger.warning("Nem létezik ilyen páciens!");
+            logger.warning("Patient with ID: " + TajNumber + " does not exist.");
         }else{
             NodeList nodeList = doc.getElementsByTagName("patient");
 
@@ -396,9 +405,9 @@ public class XmlHandler2 {
      */
     public void Edit_Patient_Diagnosis(String tajNumber, String date, String field, String value) throws TransformerException {
         if(!Contains_Patient(tajNumber)){
-            logger.warning("Nem létezik ilyen páciens!");
+            logger.warning("Patient with ID: " + tajNumber + " does not exist.");
         }else if(!Contains_Diagnosis_In_Specific_Date(tajNumber, date)){
-            logger.warning("Ilyen dátumon nincs rögzítve diagnózis!");
+            logger.warning("No diagnosis has been made on such a date, " + date);
         }else{
             NodeList nodeList = doc.getElementsByTagName("patient");
 
@@ -451,9 +460,9 @@ public class XmlHandler2 {
      */
     public void Delete_Patient_Diagnosis(String TajNumber, String date) throws TransformerException {
         if(!Contains_Patient(TajNumber)){
-            logger.warning("Nem létezik ilyen páciens!");
+            logger.warning("Patient with ID: " + TajNumber + " does not exist.");
         }else if(!Contains_Diagnosis_In_Specific_Date(TajNumber, date)){
-             logger.warning("Ilyen dátumon nincs rögzítve diagnózis!");
+             logger.warning("No diagnosis has been made on such a date, " + date);
         }else{
             NodeList nodeList = doc.getElementsByTagName("patient");
 
@@ -474,6 +483,7 @@ public class XmlHandler2 {
                                         if(nnn.getNodeType() == Node.ELEMENT_NODE){
                                             if(nnn.getAttributes().getNamedItem("date").getTextContent().equals(date)){
                                                 nn.removeChild(nnn);
+                                                logger.info("Diagnosis with date: " + date + " has been deleted from the patient's medical history.");
                                             }
                                         }
 
@@ -499,7 +509,7 @@ public class XmlHandler2 {
      */
     public boolean Contains_Any_Diagnosis(String TajNumber){
         if(!Contains_Patient(TajNumber)){
-            System.err.println("Nem létezik ilyen páciens!");
+            logger.warning("Patient with ID: " + TajNumber + " does not exist.");
         }else{
             NodeList nodeList = doc.getElementsByTagName("patient");
             for(int i = 0; i < nodeList.getLength(); i++){
@@ -545,9 +555,9 @@ public class XmlHandler2 {
     public ArrayList<Diagnosis> List_Medical_History_Of_Patient(String tajNumber){
         ArrayList<Diagnosis> tempArrayList = new ArrayList<>();
         if(!Contains_Patient(tajNumber)){
-            logger.warning("Ilyen páciens nem létezik!");
+            logger.warning("Patient with ID: " + tajNumber + " does not exist.");
         }else if(Contains_Any_Diagnosis(tajNumber)){
-            logger.warning("Ennek a páciensnek nincs rögzítvel egy diagnózis sem!");
+            logger.warning("Patient with ID: " + tajNumber + " doesn't have any diagnosis.");
         }else{
                 NodeList nodeList = doc.getElementsByTagName("patient");
                 for(int i = 0; i < nodeList.getLength(); i++) {

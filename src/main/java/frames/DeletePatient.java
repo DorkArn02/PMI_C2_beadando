@@ -11,16 +11,14 @@ import javax.xml.transform.TransformerException;
 
 import objects.Patient;
 import utils.ValidationUtils;
-import utils.XmlHandler2;
+import utils.XmlHandler;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -34,21 +32,22 @@ public class DeletePatient extends JFrame {
 	 *
 	 * @param xmlHandler2 Getting the Xml Handler Class from MainApp
 	 */
-	public DeletePatient(XmlHandler2 xmlHandler2) throws IOException {
+	public DeletePatient(XmlHandler xmlHandler2) throws IOException {
 		setTitle(DELETE_PATIENT_TITLE);
 		setIconImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/favicon-32x32.png"))));
-	    setBounds(100, 100, 358, 160);
+	    setBounds(100, 100, 354, 164);
 	    setResizable(false);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, DELETE_PATIENT_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(21, 11, 300, 104);
+		panel.setBounds(21, 11, 307, 109);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		// Delete patient button
 		JButton deleteButton = new JButton(DELETE_LABEL);
+		deleteButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		deleteButton.addActionListener(e -> {
 			if(ValidationUtils.isValidTajNumber(tajNumber.getText())) {
 				if(!xmlHandler2.Contains_Patient(tajNumber.getText())) {
@@ -76,17 +75,18 @@ public class DeletePatient extends JFrame {
 				JOptionPane.showMessageDialog(panel, ERROR_WRONG_TAJ_FORMAT, "Adatbevitel", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		deleteButton.setBounds(182, 55, 94, 30);
+		deleteButton.setBounds(169, 59, 118, 38);
 		panel.add(deleteButton);
 		
 		JLabel label_tajNumber = new JLabel(TAJ_NUMBER_LABEL);
-		label_tajNumber.setFont(new Font("Tahoma", Font.BOLD, 15));
+		label_tajNumber.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		label_tajNumber.setBounds(10, 23, 99, 19);
 		panel.add(label_tajNumber);
 		
 		tajNumber = new JTextField();
+		tajNumber.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		tajNumber.setColumns(10);
-		tajNumber.setBounds(107, 24, 169, 20);
+		tajNumber.setBounds(118, 20, 169, 30);
 		panel.add(tajNumber);
 
 		// Window close confirm dialog

@@ -45,6 +45,8 @@ public class LanguageUtils {
 	public static String MEDICAL_HISTORY_2 = "Kórtörténet";
 	public static String ERROR_WRONG_ZIP_FORMAT = "Kérem egy négy számjegyű irányítószámot adjon meg!";
 	public static String ERROR_WRONG_HOUSE_NUMBER_FORMAT = "Kérem egy házszámot adjon meg!";
+	public static String RANDOM_DATA_SUCCESS = "Sikeresen ki lettek töltve véletlen adatokkal a beviteli mezők!";
+	public static String RANDOM_PERSON_DETAILS = "Véletlen adatok generálása";
 
 	// AddDisease.java
 	public static String DIAGNOSIS_LABEL = "Diagnózis";
@@ -57,6 +59,7 @@ public class LanguageUtils {
 	public static String DIAGNOSIS_DELETED = "Sikeresen törölte a kiválaszott diagnózist a páciens adatai közül!";
 	public static String ERROR_NO_SEARCH = "Kérem előszőr írja be a páciens TAJ számát és kattintson keresés gombra!";
 	public static String DIAGNOSIS_DELETE_LABEL = "Diagnózis törlése";
+	public static String RANDOM_DISEASE_NAME = "Véletlen diagnózis generálása";
 
 	// DeletePatient.java
 	public static String DELETE_PATIENT_TITLE = "Páciens eltávolítása";
@@ -74,8 +77,8 @@ public class LanguageUtils {
 	public static String PATIENT_DATA_LABEL = "Páciens személyes adatai";
 	public static String PATIENT_LIST_LOADED = "Páciens lista betöltve!";
 	public static String PATIENT_LIST = "Páciens lista";
-	public static String PATIENT_EXPORT_BTN = "Exportálás txt-be";
+	public static String PATIENT_EXPORT_BTN = "Exportálás json-be";
 	public static String NO_PATIENT_LIST = "Nem rögzített egy pácienst sem!";
-	public static String EXPORT_SUCCESS = "A páciensek személyes adatai sikeresen ki lettek mentve a(z) 'patients_export.txt' fájlba!";
+	public static String EXPORT_SUCCESS = "A páciensek személyes adatai sikeresen ki lettek mentve a(z) 'patients_export.json' fájlba!";
 
 }

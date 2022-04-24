@@ -5,13 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.xml.transform.TransformerException;
 
 import objects.Diagnosis;
 import objects.Patient;
 import utils.ValidationUtils;
-import utils.XmlHandler2;
+import utils.XmlHandler;
 
 import static utils.LanguageUtils.*;
 import javax.swing.JLabel;
@@ -26,8 +25,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 /**
  * This is a JFrame where you can view the medical history of a specified patient.
@@ -42,9 +41,9 @@ public class ViewMedicalHistory extends JFrame {
 	 *
 	 * @param xmlHandler2 Getting the Xml Handler Class from MainApp
 	 */
-	public ViewMedicalHistory(XmlHandler2 xmlHandler2) throws IOException {
+	public ViewMedicalHistory(XmlHandler xmlHandler2) throws IOException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 773, 487);
+		setBounds(100, 100, 897, 517);
 		setIconImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/favicon-32x32.png"))));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,48 +54,43 @@ public class ViewMedicalHistory extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, VIEW_MEDICAL_HISTORY_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(24, 22, 380, 415);
+		panel.setBounds(24, 22, 515, 445);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel label_tajNumber = new JLabel(TAJ_NUMBER_LABEL);
-		label_tajNumber.setFont(new Font("Tahoma", Font.BOLD, 15));
+		label_tajNumber.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		label_tajNumber.setBounds(10, 35, 120, 20);
 		panel.add(label_tajNumber);
 		
 		tajNumber = new JTextField();
-		tajNumber.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tajNumber.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		tajNumber.setColumns(10);
-		tajNumber.setBounds(87, 37, 180, 25);
+		tajNumber.setBounds(122, 31, 180, 30);
 		panel.add(tajNumber);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, PATIENT_DATA_LABEL, TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(414, 22, 333, 415);
+		panel_1.setBounds(549, 22, 333, 445);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		patient_Adatok = new JTextArea();
 		patient_Adatok.setEditable(false);
-		patient_Adatok.setFont(new Font("Arial", Font.PLAIN, 20));
-		patient_Adatok.setBounds(10, 30, 313, 374);
+		patient_Adatok.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		patient_Adatok.setBounds(10, 30, 313, 404);
 		panel_1.add(patient_Adatok);
-		
-		JScrollPane kortortenet = new JScrollPane();
-		kortortenet.setBounds(10, 145, 349, 259);
-		panel.add(kortortenet);
 
-		JTable table = new JTable();
-		kortortenet.setViewportView(table);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(20, 151, 465, 279);
+		panel.add(scrollPane_1);
 		
-		DefaultTableModel model = new DefaultTableModel();
+		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		textPane.setEditable(false);
+		textPane.setContentType("text/html");
+		scrollPane_1.setViewportView(textPane);
 		
-		model.addColumn("Diagnózis");
-		model.addColumn("Rögzítés dátuma");
-		model.addColumn("Szakértői vélemény");
-		table.setDefaultEditor(Object.class, null);
-		table.setModel(model);
-
 		// Search patient button
 		JButton addDiagnosis = new JButton(SEARCH_PATIENT_BTN);
 		addDiagnosis.addActionListener(e -> {
@@ -116,28 +110,28 @@ public class ViewMedicalHistory extends JFrame {
 					e1.printStackTrace();
 				}
 			}else {
-				ArrayList<Diagnosis> arrayList = xmlHandler2.List_Medical_History_Of_Patient(tajNumber.getText());
-				if(model.getRowCount() != 0) {
-					model.setRowCount(0);
-					for(Diagnosis d : arrayList) {
-						model.addRow(new Object[] {
-							d.getName(),
-							d.getDate(),
-							d.getExpertOpinion()
-						});
-					}
-				}else {
-					for(Diagnosis d : arrayList) {
-						model.addRow(new Object[] {
-							d.getName(),
-							d.getDate(),
-							d.getExpertOpinion()
-						});
-					}
-				}
-				try {
-					Patient p = xmlHandler2.Get_Patient(tajNumber.getText());
 
+				ArrayList<Diagnosis> arrayList = xmlHandler2.List_Medical_History_Of_Patient(tajNumber.getText());
+
+				Patient p;
+				try {
+					p = xmlHandler2.Get_Patient(tajNumber.getText());
+					
+					String fi = "============================"
+							+ "<h1> Kórtörténet jelentés </h1>" 
+ 							+ "<p><b>Név</b>: " + p.getLastName() + " " + p.getFirstName() + "</p>" +
+							"<p><b>Születési dátum</b>: " + p.getBornDate() + "</p>" +
+							"============================";
+					
+					for(Diagnosis diagnosis : arrayList) {
+						fi += "<div style='margin-bottom: 10px;'><b>Szakértői vélemény</b> ( " + diagnosis.getDate() + "):" 
+					+ "<p color='red'>Diagnózis: " + diagnosis.getName() + "</p>" 
+					+ "<p><b>Leírat:</b>" + diagnosis.getExpertOpinion() + "</p> <hr size='2'> </div>";
+					}
+					
+					
+					textPane.setText(fi);
+				
 					patient_Adatok.setText(p.toString());
 
 				} catch (TransformerException e1) {
@@ -145,14 +139,16 @@ public class ViewMedicalHistory extends JFrame {
 				}
 			}
 		});
-		addDiagnosis.setFont(new Font("Tahoma", Font.BOLD, 13));
-		addDiagnosis.setBounds(177, 73, 89, 38);
+		addDiagnosis.setFont(new Font("Tahoma", Font.BOLD, 15));
+		addDiagnosis.setBounds(177, 73, 125, 38);
 		panel.add(addDiagnosis);
 		
 		JLabel label_medicalHistory = new JLabel(MEDICAL_HISTORY_2);
 		label_medicalHistory.setFont(new Font("Tahoma", Font.BOLD, 15));
 		label_medicalHistory.setBounds(10, 120, 114, 20);
 		panel.add(label_medicalHistory);
+		
+
 
 		// Window close confirm dialog
 		addWindowListener(new WindowAdapter() {
@@ -163,8 +159,8 @@ public class ViewMedicalHistory extends JFrame {
 
 			    if (confirmed == JOptionPane.YES_OPTION) {
 			    	clearInputFields();
-			    	model.setRowCount(0);
-				    dispose();
+			    	textPane.setText("");
+			    	dispose();
 			    }else {
 			    	setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			    }
