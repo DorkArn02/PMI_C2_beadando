@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="screenshots/logo.png" height="500px">
+    <img alt="logo" src="screenshotsn/logo.png" height="500px">
 </p>
 
 # Egészségügyi nyilvántartó rendszer
