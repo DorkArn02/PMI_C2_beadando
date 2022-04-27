@@ -71,6 +71,7 @@ public class LanguageUtils {
 	public static String EDIT_PATIENT_TITLE = "Páciens adatainak módosítása TAJ szám alapján";
 	public static String EDIT_PATIENT_BTN = "Módosítás";
 	public static String PATIENT_EDIT_SUCESS = "Páciens adatai sikeresen módosítva!";
+	public static String BLOOD_GROUP = "Vércsoport";
 
 	// ListExport.java ViewMedicalHistory.java
 	public static String VIEW_MEDICAL_HISTORY_TITLE = "Páciens kórtörténetének lekérdezése";
@@ -80,5 +81,7 @@ public class LanguageUtils {
 	public static String PATIENT_EXPORT_BTN = "Exportálás json-be";
 	public static String NO_PATIENT_LIST = "Nem rögzített egy pácienst sem!";
 	public static String EXPORT_SUCCESS = "A páciensek személyes adatai sikeresen ki lettek mentve a(z) 'patients_export.json' fájlba!";
-
+	public static String REPORT_TITLE = "Kórtörténet jelentés";
+	public static String PATIENT_NAME = "Páciens neve";
+	public static String MEDICAL_REPORT = "Lelet";
 }

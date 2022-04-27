@@ -118,15 +118,15 @@ public class ViewMedicalHistory extends JFrame {
 					p = xmlHandler2.Get_Patient(tajNumber.getText());
 					
 					String fi = "============================"
-							+ "<h1> Kórtörténet jelentés </h1>" 
- 							+ "<p><b>Név</b>: " + p.getLastName() + " " + p.getFirstName() + "</p>" +
-							"<p><b>Születési dátum</b>: " + p.getBornDate() + "</p>" +
+							+ "<h1>" + REPORT_TITLE + "</h1>"
+ 							+ "<p><b>" + PATIENT_NAME +"</b>: " + p.getLastName() + " " + p.getFirstName() + "</p>" +
+							"<p><b>" +  BORN_DATE_LABEL +"</b>: " + p.getBornDate() + "</p>" +
 							"============================";
 					
 					for(Diagnosis diagnosis : arrayList) {
-						fi += "<div style='margin-bottom: 10px;'><b>Szakértői vélemény</b> ( " + diagnosis.getDate() + "):" 
-					+ "<p color='red'>Diagnózis: " + diagnosis.getName() + "</p>" 
-					+ "<p><b>Leírat:</b>" + diagnosis.getExpertOpinion() + "</p> <hr size='2'> </div>";
+						fi += "<div style='margin-bottom: 10px;'><b>" + EXPERT_OPINION_LABEL +"y</b> ( " + diagnosis.getDate() + "):"
+					+ "<p color='red'>" + DIAGNOSIS_LABEL +": " + diagnosis.getName() + "</p>"
+					+ "<p><b>" + MEDICAL_REPORT +":</b>" + diagnosis.getExpertOpinion() + "</p> <hr size='2'> </div>";
 					}
 					
 					

@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
 import java.util.Objects;
-import javax.swing.table.DefaultTableModel;
 import javax.xml.transform.TransformerException;
 
 import static utils.LanguageUtils.*;
@@ -246,12 +245,6 @@ public class AddDisease extends JFrame {
 		label_medicalHistory.setBounds(10, 89, 97, 20);
 		panel_1.add(label_medicalHistory);
 		
-		DefaultTableModel model = new DefaultTableModel();
-		
-		model.addColumn("Diagnózis");
-		model.addColumn("Rögzítés dátuma");
-		model.addColumn("Szakértői vélemény");
-		
 		
 		comboBox = new JComboBox<>();
 		comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -287,17 +280,17 @@ public class AddDisease extends JFrame {
 				Patient p;
 				try {
 					p = xmlHandler2.Get_Patient(tajNumber2.getText());
-					
+
 					String fi = "============================"
-							+ "<h1> Kórtörténet jelentés </h1>" 
- 							+ "<p><b>Név</b>: " + p.getLastName() + " " + p.getFirstName() + "</p>" +
-							"<p><b>Születési dátum</b>: " + p.getBornDate() + "</p>" +
+							+ "<h1>" + REPORT_TITLE + "</h1>"
+							+ "<p><b>" + PATIENT_NAME +"</b>: " + p.getLastName() + " " + p.getFirstName() + "</p>" +
+							"<p><b>" +  BORN_DATE_LABEL +"</b>: " + p.getBornDate() + "</p>" +
 							"============================";
-					
+
 					for(Diagnosis diagnosis : arrayList) {
-						fi += "<div style='margin-bottom: 10px;'><b>Szakértői vélemény</b> ( " + diagnosis.getDate() + "):" 
-					+ "<p color='red'>Diagnózis: " + diagnosis.getName() + "</p>" 
-					+ "<p><b>Leírat:</b>" + diagnosis.getExpertOpinion() + "</p> <hr size='2'> </div>";
+						fi += "<div style='margin-bottom: 10px;'><b>" + EXPERT_OPINION_LABEL +"y</b> ( " + diagnosis.getDate() + "):"
+								+ "<p color='red'>" + DIAGNOSIS_LABEL +": " + diagnosis.getName() + "</p>"
+								+ "<p><b>" + MEDICAL_REPORT +":</b>" + diagnosis.getExpertOpinion() + "</p> <hr size='2'> </div>";
 					}
 					
 					
@@ -341,18 +334,18 @@ public class AddDisease extends JFrame {
 						Patient p;
 				
 							p = xmlHandler2.Get_Patient(tajNumber2.getText());
-							
-							String fi = "============================"
-									+ "<h1> Kórtörténet jelentés </h1>" 
-		 							+ "<p><b>Név</b>: " + p.getLastName() + " " + p.getFirstName() + "</p>" +
-									"<p><b>Születési dátum</b>: " + p.getBornDate() + "</p>" +
-									"============================";
-							
-							for(Diagnosis diagnosis : arrayList) {
-								fi += "<div style='margin-bottom: 10px;'><b>Szakértői vélemény</b> ( " + diagnosis.getDate() + "):" 
-							+ "<p color='red'>Diagnózis: " + diagnosis.getName() + "</p>" 
-							+ "<p><b>Leírat:</b>" + diagnosis.getExpertOpinion() + "</p> <hr size='2'> </div>";
-							}
+
+						String fi = "============================"
+								+ "<h1>" + REPORT_TITLE + "</h1>"
+								+ "<p><b>" + PATIENT_NAME +"</b>: " + p.getLastName() + " " + p.getFirstName() + "</p>" +
+								"<p><b>" +  BORN_DATE_LABEL +"</b>: " + p.getBornDate() + "</p>" +
+								"============================";
+
+						for(Diagnosis diagnosis : arrayList) {
+							fi += "<div style='margin-bottom: 10px;'><b>" + EXPERT_OPINION_LABEL +"y</b> ( " + diagnosis.getDate() + "):"
+									+ "<p color='red'>" + DIAGNOSIS_LABEL +": " + diagnosis.getName() + "</p>"
+									+ "<p><b>" + MEDICAL_REPORT +":</b>" + diagnosis.getExpertOpinion() + "</p> <hr size='2'> </div>";
+						}
 							
 							
 							medicalHistoryPanel.setText(fi);
@@ -377,7 +370,6 @@ public class AddDisease extends JFrame {
 			        JOptionPane.YES_NO_OPTION);
 			    if (confirmed == JOptionPane.YES_OPTION) {
 			      clearInputFields();
-			      model.setRowCount(0);
 			      dispose();
 			    }else {
 			    	setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

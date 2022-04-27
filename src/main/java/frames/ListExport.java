@@ -54,11 +54,11 @@ public class ListExport extends JFrame {
 		JScrollPane kortortenet = new JScrollPane();
 		kortortenet.setBounds(10, 55, 359, 335);
 		panel.add(kortortenet);
-		
+
 		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Vezetéknév");
-		model.addColumn("Keresztnév");
-		model.addColumn("TAJ szám");
+		model.addColumn(LAST_NAME_LABEL);
+		model.addColumn(FIRST_NAME_LABEL);
+		model.addColumn(TAJ_NUMBER_LABEL);
 
 		JTable table = new JTable();
 		table.setFont(new Font("Segoe UI", Font.BOLD, 15));

@@ -336,7 +336,7 @@ public class EditPatient extends JFrame {
 		bornDate.setBounds(141, 65, 120, 30);
 		panel.add(bornDate);
 
-		JLabel label_BloodGroup = new JLabel("Vércsoport");
+		JLabel label_BloodGroup = new JLabel(BLOOD_GROUP);
 		label_BloodGroup.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		label_BloodGroup.setBounds(272, 229, 120, 20);
 		panel.add(label_BloodGroup);

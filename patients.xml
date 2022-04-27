@@ -294,13 +294,13 @@ aut ut ea sit dolorum.</expertOpinion>
         <zipCode>6538</zipCode>
         <city>Leanderfalu</city>
         <street>Fő út</street>
-        <houseNumber>911</houseNumber>
+        <houseNumber>1233</houseNumber>
         <motherName>Báró Szabó Bátor</motherName>
         <fatherName>Hegedűs Denissza</fatherName>
         <bornPlace>Mártonfalu</bornPlace>
         <phoneNumber>+36-20-0563664</phoneNumber>
         <gender>nő</gender>
-        <bloodGroup>0-</bloodGroup>
+        <bloodGroup>B+</bloodGroup>
         <medicalHistory/>
     </patient>
 </patients>

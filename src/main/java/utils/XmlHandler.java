@@ -36,6 +36,7 @@ public class XmlHandler {
         }catch(IOException e) {
         	this.doc = db.newDocument();
         	this.doc.appendChild(doc.createElement("patients"));
+            logger.info("patients.xml does not exist, a new file has been created!");
         	try {
 				Update_Xml_File();
 			} catch (TransformerException e1) {
@@ -447,7 +448,7 @@ public class XmlHandler {
                     }
                 }
             }
-
+            logger.info("Patient's diagnosis in " + date + " and field " + field + " changed to " + value);
             Update_Xml_File();
 
         }
@@ -497,7 +498,7 @@ public class XmlHandler {
                     }
                 }
             }
-
+            logger.info("Patient with ID: " + TajNumber + ", diagnosis in " + date + " deleted successfully.");
             Update_Xml_File();
         }
     }

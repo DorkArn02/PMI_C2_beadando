@@ -1,7 +1,9 @@
 package core;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.UIManager;
@@ -40,7 +42,7 @@ public class MainApp {
 			
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException | IOException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -49,7 +51,7 @@ public class MainApp {
 			xmlHandler2 = new XmlHandler("./patients.xml");
 			logger.info("Xml files loaded successfully.");
 		} catch (ParserConfigurationException | SAXException  | TransformerException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
 }

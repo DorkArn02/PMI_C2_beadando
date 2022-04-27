@@ -65,7 +65,7 @@ Végül az objektumok megtalálhatóak az `src/main/objects` mappában.
 
 ## Objektumok felépítése
 
-Az alábbi két táblázat bemutatja az objektumnak a felépítését és az itt felvázolt mezők rendelkeznek getter/setter függvényekkel.
+Az alábbi két táblázat bemutatja az objektumoknak a felépítését és az itt felvázolt mezők rendelkeznek getter/setter függvényekkel.
 
 **Fontos:** A páciensek személyes adatai közül az irányítószámot, az házszámot és a taj számot egy metódus ellenőrzi, hogy helyesek-e csak akkor lehet az új pácienst rögzíteni az adatbázisban.
 
@@ -162,7 +162,7 @@ Azonban, ha az adott taj számmal már létrehoztunk egy személyt az adatbázis
 
 ![](screenshotsn/AddPatientRandom.PNG)
 
-Ha be akarjuk zárni az ablakot, akkor megjelenik egy megerősítő panel.
+Ha be akarjuk zárni az ablakot, akkor megjelenik egy megerősítő panel. (Minden beviteli mezővel rendelkező ablak esetén)
 
 ![](screenshotsn/ConfirmDialog.PNG)
 
@@ -181,8 +181,9 @@ Ha be akarjuk zárni az ablakot, akkor megjelenik egy megerősítő panel.
 ### Páciens törlése
 
 Páciens eltávolítása esetén csak egy TAJ számot kell megadni, mert elsődleges kulcs szerepe van. Tehát egy személyhez csak 1 TAJ szám tartozik.
+A helyes TAJ szám megadása után egy párbeszéd ablak megkérdezi, hogy biztosan ki szeretnénk-e törölni a pácienst az adatbázisból.
 
-A beviteli mezőbe egy 9 számjegyű kódot kell megadni. Hiba esetén párbeszéd ablak jelenik meg.
+A beviteli mezőbe egy 9 számjegyű kódot kell megadni. Hiba esetén felugró ablak jelenik meg.
 
 ![](screenshotsn/DeletePatient.PNG)
 
@@ -209,6 +210,8 @@ A diagnózis rögzítésekor meg kell adnunk a páciens TAJ számát, a betegsé
 
 Ha elkezdjük gépelni a TAJ számot és egy olyat adunk meg, ami létezik akkor ezt jelzi egy felugró panel.
 
+Itt is lehet tesztelési célokból véletlenszerű diagnózist és leletet generálni ha rákattintunk a **Véletlen diagnózis generálása** gombra a bal alsó sarokban.
+
 ![](screenshotsn/AddDiseaseTajNotify.PNG)
 ![](screenshotsn/AddDiseaseNotify.PNG)
 
@@ -217,6 +220,8 @@ Ha már létezik egy diagnózis egy adott dátumon akkor hibaüzenet jelenik meg
 A diagnózis törlése a jobb oldali panelben található, a TAJ szám megadásával és a keresés gombra való kattintás után megjelenik a táblázatban a kórtörténet.
 
 A legördülő menüben ki kell választani azt a dátumot amely a törlendő diagnózishoz tartozik majd az **Eltávolítás** gombra kell kattintani.
+
+Ha beírunk egy létező és helyes TAJ számot, akkor egy felugró ablak jelzi, hogy találat és kiírja a nevét az illetőnek.
 
 ![](screenshotsn/DeleteDiagnosis.PNG)
 
@@ -227,9 +232,11 @@ Az oldalt található szövegdoboz tartalma nem módosítható, csupán a pácie
 
 ![](screenshotsn/MedicalHistory.PNG)
 
-### Páciensek személyes adatainak exportálása
+### Páciensek személyes adatainak megtekintése / exportálása
 
+Itt megtudjuk nézni az eddig rögzített pácienseket az adatbázisban.
 
+Ha kiválasztunk egy cellát pl.: TAJ számot és `CTRL+C` billentyűkombinációt megnyomjuk, akkor kitudjuk másolni a benne szereplő adatot.
 
 ![](screenshotsn/PatientList.PNG)
 
