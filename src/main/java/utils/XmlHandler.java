@@ -19,6 +19,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class XmlHandler {
@@ -40,7 +41,7 @@ public class XmlHandler {
         	try {
 				Update_Xml_File();
 			} catch (TransformerException e1) {
-				e1.printStackTrace();
+				logger.log(Level.SEVERE, e1.getMessage());
 			}
         }
     }
@@ -54,6 +55,7 @@ public class XmlHandler {
     	NodeList nodeList = doc.getElementsByTagName("patient");
         for(int i = 0; i < nodeList.getLength(); i++){
             Node node = nodeList.item(i);
+            // <patient tajNumber='xxxxxxxxx'>
             if(node.getAttributes().getNamedItem("tajNumber") != null)
             	if(node.getAttributes().getNamedItem("tajNumber").getTextContent().equals(TajNumber))
             		return true;
@@ -134,6 +136,7 @@ public class XmlHandler {
             NodeList nodeList = doc.getElementsByTagName("patient");
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node node = nodeList.item(i);
+                // <patient tajNumber='xxxxxxxxx'>
                 if(node.getAttributes().getNamedItem("tajNumber").getTextContent().equals(tajNumber)){
                     doc.getDocumentElement().removeChild(node);
                 }
@@ -154,13 +157,18 @@ public class XmlHandler {
     public void Edit_Patient_Detail(String TajNumber, String Detail, String NewValue) throws TransformerException {
         if(Contains_Patient(TajNumber)){
             NodeList nodeList = doc.getElementsByTagName("patient");
+            // Iterate through patients
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node n = nodeList.item(i);
+                // <patient> node
                 if(n.getNodeType() == Node.ELEMENT_NODE){
+                    // It's the appropiate patient
                     if(n.getAttributes().getNamedItem("tajNumber").getTextContent().equals(TajNumber)){
+                        // Iterate through the patient's details
                         NodeList childNodes = n.getChildNodes();
                         for(int j = 0; j < childNodes.getLength(); j++){
                             Node nn = childNodes.item(j);
+                            // Ex: nodeName = <firstName> then change the first name to new value
                             if(nn.getNodeType() == Node.ELEMENT_NODE){
                                 if(nn.getNodeName().equals(Detail)){
                                     nn.setTextContent(NewValue);
@@ -186,14 +194,17 @@ public class XmlHandler {
     public Patient Get_Patient(String TajNumber) throws TransformerException {
         Patient patient = new Patient();
         if(Contains_Patient(TajNumber)){
-            NodeList nodeList = doc.getElementsByTagName("patient"); 
+            NodeList nodeList = doc.getElementsByTagName("patient");
+            // Iterate through patients
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node n = nodeList.item(i);
                 if(n.getNodeType() == Node.ELEMENT_NODE){
+                    // <patient tajNumber='xxxxxxxxx'>
                     if(n.getAttributes().getNamedItem("tajNumber").getTextContent().equals(TajNumber)){
                     	patient.setTajNumber(n.getAttributes().getNamedItem("tajNumber").getTextContent());
                         NodeList childNodes = n.getChildNodes();
 
+                        // Transfer the data to new patient object
                         for(int j = 0; j < childNodes.getLength(); j++){
                         		if(childNodes.item(j).getNodeName().equals("firstName"))
                         			patient.setFirstName(childNodes.item(j).getTextContent());
@@ -290,7 +301,13 @@ public class XmlHandler {
         doc.getDocumentElement().normalize();
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        // Source of XSLT document used to create Transformer
+        // <xsl:strip-space elements="*" />
+        // It deletes the empty spaces after xml file update
+        // <xsl:output method="xml" omit-xml-declaration="yes" />
+        // Keep the xml decoration after file edit
         Transformer transformer = transformerFactory.newTransformer(new StreamSource(new File("src/main/resources/patients.xsl")));
+
         transformer.setOutputProperty(
                 "{https://xml.apache.org/xslt}indent-amount", "4");
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -317,7 +334,7 @@ public class XmlHandler {
         }else if(Contains_Diagnosis_In_Specific_Date(tajNumber, date)) {
             logger.warning("Diagnosis with date: " + date + " already exists.");
         }else{
-
+            // <diagnosis date='yyyy-MM-dd hh:mm'>
             Element diag = doc.createElement("diagnosis");
             Element name = doc.createElement("name");
             Element expOp = doc.createElement("expertOpinion");
@@ -330,6 +347,7 @@ public class XmlHandler {
 
             NodeList nodeList = doc.getElementsByTagName("patient");
 
+            // Iterate through patients
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node n = nodeList.item(i);
                 if(n.getNodeType() == Node.ELEMENT_NODE){
@@ -340,6 +358,7 @@ public class XmlHandler {
                         for(int j = 0; j <childNodes.getLength(); j++){
                             Node nn = childNodes.item(j);
                             if(nn.getNodeType() == Node.ELEMENT_NODE){
+                                // Add <diagnosis ...>
                                 if(nn.getNodeName().equals("medicalHistory")){
                                     nn.appendChild(diag);
                                 }
@@ -415,19 +434,19 @@ public class XmlHandler {
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node n = nodeList.item(i);
                 if(n.getNodeType() == Node.ELEMENT_NODE){
-                    // PÁCIENS KERESÉSE
+                    // Search patient
                     if(n.getAttributes().getNamedItem("tajNumber").getTextContent().equals(tajNumber)){
                         NodeList childNodes = n.getChildNodes();
                         for(int j = 0; j < childNodes.getLength(); j++){
                             Node nn = childNodes.item(j);
                             if(nn.getNodeType() == Node.ELEMENT_NODE){
-                                // PÁCIENS KÓRTÖRTÉNETE
+                                // Medical history of patient
                                 if(nn.getNodeName().equals("medicalHistory")){
                                     NodeList diagnoses = nn.getChildNodes();
                                     for(int z = 0; z < diagnoses.getLength(); z++){
                                         Node nnn = diagnoses.item(z);
                                         if(nnn.getNodeType() == Node.ELEMENT_NODE){
-                                            // ADOTT DÁTUMHOZ TARTOZÓ DIAGNÓZIS
+                                            // Date found
                                             if(nnn.getAttributes().getNamedItem("date").getTextContent().equals(date)){
                                                 if(nnn.getChildNodes().item(0).getNodeName().equals(field)){
                                                     nnn.getChildNodes().item(0).setTextContent(value);
@@ -470,18 +489,19 @@ public class XmlHandler {
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node n = nodeList.item(i);
                 if(n.getNodeType() == Node.ELEMENT_NODE){
-                    // PÁCIENS KERESÉSE
+                    // Search patient
                     if(n.getAttributes().getNamedItem("tajNumber").getTextContent().equals(TajNumber)){
                         NodeList childNodes = n.getChildNodes();
                         for(int j = 0; j < childNodes.getLength(); j++){
                             Node nn = childNodes.item(j);
                             if(nn.getNodeType() == Node.ELEMENT_NODE){
-                                // PÁCIENS KÓRTÖRTÉNETE
+                                // Medical history of patient
                                 if(nn.getNodeName().equals("medicalHistory")){
                                     NodeList diagnoses = nn.getChildNodes();
                                     for(int z = 0; z < diagnoses.getLength(); z++){
                                         Node nnn = diagnoses.item(z);
                                         if(nnn.getNodeType() == Node.ELEMENT_NODE){
+                                            // Remove <diagnosis> from <medicalHistory>
                                             if(nnn.getAttributes().getNamedItem("date").getTextContent().equals(date)){
                                                 nn.removeChild(nnn);
                                                 logger.info("Diagnosis with date: " + date + " has been deleted from the patient's medical history.");
@@ -512,6 +532,7 @@ public class XmlHandler {
         if(!Contains_Patient(TajNumber)){
             logger.warning("Patient with ID: " + TajNumber + " does not exist.");
         }else{
+            // Iterate through patients
             NodeList nodeList = doc.getElementsByTagName("patient");
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node n = nodeList.item(i);
@@ -521,8 +542,10 @@ public class XmlHandler {
                         for(int j = 0; j <childNodes.getLength(); j++){
                             Node nn = childNodes.item(j);
                             if(nn.getNodeType() == Node.ELEMENT_NODE){
+                                // Medical history
                                 if(nn.getNodeName().equals("medicalHistory")){
                                     NodeList diagnoses = nn.getChildNodes();
+                                    // Diagnosis
                                     for(int z = 0; z < diagnoses.getLength(); z++){
                                         Node nnn = diagnoses.item(z);
                                         if(nnn.getNodeType() == Node.ELEMENT_NODE){
@@ -560,33 +583,38 @@ public class XmlHandler {
         }else if(Contains_Any_Diagnosis(tajNumber)){
             logger.warning("Patient with ID: " + tajNumber + " doesn't have any diagnosis.");
         }else{
-                NodeList nodeList = doc.getElementsByTagName("patient");
-                for(int i = 0; i < nodeList.getLength(); i++) {
-                    Node n = nodeList.item(i);
-                    if (n.getNodeType() == Node.ELEMENT_NODE) {
-                        if (n.getAttributes().getNamedItem("tajNumber").getTextContent().equals(tajNumber)) {
-                            NodeList childNodes = n.getChildNodes();
+            // Iterate through patients
+                NodeList allPatient = doc.getElementsByTagName("patient");
+                for(int i = 0; i < allPatient.getLength(); i++) {
+                    Node patientNode = allPatient.item(i);
+                    if (patientNode.getNodeType() == Node.ELEMENT_NODE) {
+                        // <patient tajNumber='xxxxxxxxx'>
+                        if (patientNode.getAttributes().getNamedItem("tajNumber").getTextContent().equals(tajNumber)) {
+                            NodeList childNodes = patientNode.getChildNodes();
                             for (int j = 0; j < childNodes.getLength(); j++) {
-                                Node nn = childNodes.item(j);
-                                if (nn.getNodeType() == Node.ELEMENT_NODE) {
-                                    if (nn.getNodeName().equals("medicalHistory")) {
-                                        NodeList diagnoses = nn.getChildNodes();
+                                Node childNode = childNodes.item(j);
+                                // Medical history
+                                if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    if (childNode.getNodeName().equals("medicalHistory")) {
+                                        NodeList diagnoses = childNode.getChildNodes();
+                                        // Diagnosis
                                         for (int z = 0; z < diagnoses.getLength(); z++) {
-                                            Node nnn = diagnoses.item(z);
-                                            if (nnn.getNodeType() == Node.ELEMENT_NODE) {
+                                            Node diagnosisItem = diagnoses.item(z);
+                                            if (diagnosisItem.getNodeType() == Node.ELEMENT_NODE) {
                                             	Diagnosis diagnosis = new Diagnosis();
+                                            	// <diagnosis date='yyyy-MM-dd hh:mm'>
+                                            	diagnosis.setDate(diagnosisItem.getAttributes().getNamedItem("date").getTextContent());
                                             	
-                                            	diagnosis.setDate(nnn.getAttributes().getNamedItem("date").getTextContent());
-                                            	
-                                            	NodeList nnnn = nnn.getChildNodes();
-                                            	
-                                            	for(int zz = 0; zz < nnnn.getLength(); zz++) {
-                                            		if(nnnn.item(zz).getNodeType() == Node.ELEMENT_NODE) {
-                                            			if(nnnn.item(zz).getNodeName().equals("name")) {
-                                            				diagnosis.setName(nnnn.item(zz).getTextContent());
+                                            	NodeList diagnosisChildren = diagnosisItem.getChildNodes();
+
+                                                // <name> and <expertOpinion>
+                                            	for(int zz = 0; zz < diagnosisChildren.getLength(); zz++) {
+                                            		if(diagnosisChildren.item(zz).getNodeType() == Node.ELEMENT_NODE) {
+                                            			if(diagnosisChildren.item(zz).getNodeName().equals("name")) {
+                                            				diagnosis.setName(diagnosisChildren.item(zz).getTextContent());
                                             			}
-                                            			if(nnnn.item(zz).getNodeName().equals("expertOpinion")) {
-                                            				diagnosis.setExpertOpinion(nnnn.item(zz).getTextContent());
+                                            			if(diagnosisChildren.item(zz).getNodeName().equals("expertOpinion")) {
+                                            				diagnosis.setExpertOpinion(diagnosisChildren.item(zz).getTextContent());
                                             			}
                                             		}
                                             	} 	
