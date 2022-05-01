@@ -65,12 +65,12 @@ Végül az objektumok megtalálhatóak az `src/main/objects` mappában.
 
 ## Objektumok felépítése
 
-Az alábbi két táblázat bemutatja az objektumoknak a felépítését és az itt felvázolt mezők rendelkeznek getter/setter függvényekkel.
+Az alábbi három táblázat bemutatja az objektumoknak a felépítését és az itt felvázolt mezők rendelkeznek getter/setter függvényekkel.
 
 **Fontos:** A páciensek személyes adatai közül az irányítószámot, az házszámot és a taj számot egy metódus ellenőrzi, hogy helyesek-e csak akkor lehet az új pácienst rögzíteni az adatbázisban.
 
 **Formai követelmények:**
-* Irányítószám - zipCode: 4 számjegyű kód
+* Irányítószám - zipCode: 4 számjegyű kód (Magyarország)
 * Taj szám - tajNumber: 9 számjegyú kód
 * Házszám - houseNumber: Csak számjegyekből állhat
 * Születési dátum - bornDate: yyyy/MM/dd azaz év/hónap/nap formátumban kell megadni
@@ -100,7 +100,7 @@ Az alábbi két táblázat bemutatja az objektumoknak a felépítését és az i
 | **name**          | A diagnózis megnevezése |
 | **expertOpinion** | Szakértői vélemény      |
 
-### Vércsoport objektum (BloodGroup.java)
+### Vércsoport objektum /enum/ (BloodGroup.java)
 
 | Vércsoport jelölés | Megnevezés               |
 |--------------------|--------------------------|
@@ -256,7 +256,7 @@ A programban lehetséges megadni véletlenszerű adatokat, ezeket a [Faker](http
 
 Az exportálást a Google [Gson](https://github.com/google/gson) könyvtára végzi el.
 
-A Swing UI alapértelmezett kinézetét felülírja a FlatLaf nevű könyvtár.
+A Swing UI alapértelmezett kinézetét felülírja a [FlatLaf](https://www.formdev.com/flatlaf/) nevű könyvtár.
 
 * **JCalendar**: https://mvnrepository.com/artifact/com.toedter/jcalendar
 * **LGoodDatePicker**: https://mvnrepository.com/artifact/com.github.lgooddatepicker/LGoodDatePicker
