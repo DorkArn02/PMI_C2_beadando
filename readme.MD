@@ -74,6 +74,7 @@ Az alábbi három táblázat bemutatja az objektumoknak a felépítését és az
 * Taj szám - tajNumber: 9 számjegyú kód
 * Házszám - houseNumber: Csak számjegyekből állhat
 * Születési dátum - bornDate: yyyy/MM/dd azaz év/hónap/nap formátumban kell megadni
+* Telefonszám - phoneNumber: Helyes formátumú magyar telefonszámok
 
 ### Páciens objektum (Patient.java)
 
