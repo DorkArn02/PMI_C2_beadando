@@ -47,6 +47,7 @@ public class LanguageUtils {
 	public static String ERROR_WRONG_HOUSE_NUMBER_FORMAT = "Kérem egy házszámot adjon meg!";
 	public static String RANDOM_DATA_SUCCESS = "Sikeresen ki lettek töltve véletlen adatokkal a beviteli mezők!";
 	public static String RANDOM_PERSON_DETAILS = "Véletlen adatok generálása";
+	public static String ERROR_WRONG_PHONE_NUMBER_FORMAT = "Kérem helyes formátumban adja meg a telefonszámot!";
 
 	// AddDisease.java
 	public static String DIAGNOSIS_LABEL = "Diagnózis";

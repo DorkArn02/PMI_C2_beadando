@@ -128,7 +128,7 @@ public class AddDisease extends JFrame {
 		
 		expertOpinion = new JTextArea();
 		scrollPane.setViewportView(expertOpinion);
-		expertOpinion.setColumns(2);
+		expertOpinion.setLineWrap(true);
 		expertOpinion.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		
 		diagnosis_date = new DateTimePicker();
@@ -193,6 +193,7 @@ public class AddDisease extends JFrame {
 			
 			expertOpinion.setText(f.lorem().paragraph(2));
 
+			JOptionPane.showMessageDialog(this, RANDOM_DATA_SUCCESS);
 		});
 		btnNewButton.setBounds(10, 408, 247, 36);
 		panel.add(btnNewButton);

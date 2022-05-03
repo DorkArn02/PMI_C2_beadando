@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import static utils.LanguageUtils.*;
@@ -76,7 +77,7 @@ public class Dashboard extends JFrame {
 				logger.info("Medical history window opened!");
 			}
 		});
-		btnKrtrtnet.setIcon(new ImageIcon(ImageIO.read(medical_history_icon)));
+		btnKrtrtnet.setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(medical_history_icon))));
 		btnKrtrtnet.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnKrtrtnet.setBounds(392, 315, 241, 100);
      	contentPane.add(btnKrtrtnet);
@@ -89,7 +90,7 @@ public class Dashboard extends JFrame {
 				logger.info("List / export window opened!");
 			}
 		});
-		btnLista.setIcon(new ImageIcon(ImageIO.read(list_export_icon)));
+		btnLista.setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(list_export_icon))));
 		btnLista.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnLista.setBounds(392, 204, 241, 100);
 		contentPane.add(btnLista);
@@ -102,7 +103,7 @@ public class Dashboard extends JFrame {
 				logger.info("Add diagnosis window opened!");
 			}
 		});
-		btnBetegsgRgztse.setIcon(new ImageIcon(ImageIO.read(add_disease_icon)));
+		btnBetegsgRgztse.setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(add_disease_icon))));
 		btnBetegsgRgztse.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnBetegsgRgztse.setBounds(392, 93, 241, 100);
 		contentPane.add(btnBetegsgRgztse);
@@ -116,7 +117,7 @@ public class Dashboard extends JFrame {
 				logger.info("Edit patient window opened!");
 			}
 		});
-		btnPciensAdatmdosts.setIcon(new ImageIcon(ImageIO.read(edit_patient_icon)));
+		btnPciensAdatmdosts.setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(edit_patient_icon))));
 		btnPciensAdatmdosts.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnPciensAdatmdosts.setBounds(10, 315, 251, 100);
 		contentPane.add(btnPciensAdatmdosts);
@@ -129,7 +130,7 @@ public class Dashboard extends JFrame {
 				logger.info("Delete patient data window opened!");
 			}
 		});
-		btnPciensTrlse.setIcon(new ImageIcon(ImageIO.read(delete_patient_icon)));
+		btnPciensTrlse.setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(delete_patient_icon))));
 		btnPciensTrlse.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnPciensTrlse.setBounds(10, 204, 251, 100);
 		contentPane.add(btnPciensTrlse);
@@ -150,11 +151,11 @@ public class Dashboard extends JFrame {
 		});
 
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setIcon(new ImageIcon(ImageIO.read(add_patient_icon)));
+		btnNewButton.setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(add_patient_icon))));
 		btnNewButton.setBounds(10, 93, 251, 100);
 		contentPane.add(btnNewButton);
 
-		ImageIcon icon = new ImageIcon(ImageIO.read(background_image));
+		ImageIcon icon = new ImageIcon(ImageIO.read(Objects.requireNonNull(background_image)));
 
 		JLabel imgBackground = new JLabel(icon);
 		imgBackground.setLocation(0, 0);

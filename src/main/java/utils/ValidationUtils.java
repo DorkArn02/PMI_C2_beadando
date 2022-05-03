@@ -3,6 +3,8 @@ package utils;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ValidationUtils {
 	/**
@@ -103,4 +105,16 @@ public class ValidationUtils {
 				&& szuletesi_helyString.length() != 0;
 	}
 
+	/**
+	 * Returns true if the phone number is valid
+	 * @param phoneNumber Phone number of patient
+	 * @return boolean
+	 */
+	public static boolean isValidPhoneNumber(String phoneNumber){
+		// REGEX FOR HUNGARIAN PHONE NUMBERS
+		Pattern pattern = Pattern.compile("((?:\\+?3|0)6)[-(]?(\\d{1,2})[-)]?(\\d{3})-?(\\d{3,4})");
+		Matcher matcher = pattern.matcher(phoneNumber);
+
+		return matcher.matches();
+	}
 }

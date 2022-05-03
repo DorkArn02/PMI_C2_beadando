@@ -103,6 +103,8 @@ public class AddPatient extends JFrame {
 						JOptionPane.showMessageDialog(contentPane, ERROR_WRONG_ZIP_FORMAT, "Adatbevitel", JOptionPane.ERROR_MESSAGE);
 					}else if(!ValidationUtils.isValidHouseNumber(houseNumber.getText())){
 						JOptionPane.showMessageDialog(contentPane, ERROR_WRONG_HOUSE_NUMBER_FORMAT, "Adatbevitel", JOptionPane.ERROR_MESSAGE);
+					}else if(!ValidationUtils.isValidPhoneNumber(phoneNumber.getText())) {
+						JOptionPane.showMessageDialog(contentPane, ERROR_WRONG_PHONE_NUMBER_FORMAT, "Adatbevitel", JOptionPane.ERROR_MESSAGE);
 					}else{
 						Patient patient = new Patient();
 						patient.setLastName(lastName.getText());
@@ -128,7 +130,7 @@ public class AddPatient extends JFrame {
 						patient.setPhoneNumber(phoneNumber.getText());
 						patient.setCity(city.getText());
 						patient.setBloodGroup(Objects.requireNonNull(comboBox.getSelectedItem()).toString());
-												
+
 						if(!xmlHandler2.Contains_Patient(tajNumber.getText())) {
 							try {
 								xmlHandler2.Add_Patient(patient);
